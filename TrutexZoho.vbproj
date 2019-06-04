@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{51E65EFB-FD1B-471A-AC1B-AB9B9B2F3DD9}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>ConsoleApp3.Module1</StartupObject>
+    <StartupObject>ConsoleApp3.Main</StartupObject>
     <RootNamespace>ConsoleApp3</RootNamespace>
     <AssemblyName>ConsoleApp3</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -90,7 +90,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Module1.vb" />
+    <Compile Include="Console\clArg.vb" />
+    <Compile Include="Console\cursorloc.vb" />
+    <Compile Include="Main.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
