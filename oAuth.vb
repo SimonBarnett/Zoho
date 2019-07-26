@@ -1,18 +1,36 @@
-﻿Imports System.IO
+﻿Imports System.Data.SqlClient
+Imports System.IO
 Imports System.Net
 
 Module oAuth
 
+    Public cn As SqlConnection
+
     Sub main()
 
-        Dim z As New zoho_envelope()
-        Dim acc As New zoho_Account
-        Dim ord As New zoho_Order
+        cn = New SqlConnection("Data Source=10.0.0.152;Initial Catalog=tru;User ID=sa;Pwd=Trut3x")
+        cn.Open()
 
-        z.data.Add(acc)
-        z.data.Add(ord)
+        Do
 
-        Console.Write(z.toSerial)
+            Dim z As New zoho_envelope(
+                "Select top 100 * from zoho_Accounts",
+                cn
+            )
+
+            Using r As SqlDataReader = z.cmd.ExecuteReader()
+
+                If Not r.HasRows Then Exit Do
+                While r.Read
+                    z.data.Add(New zoho_Account(r))
+
+                End While
+
+                Console.Write(z.toSerial)
+
+            End Using
+
+        Loop
 
         Try
             'https://accounts.zoho.eu/oauth/v2/token?grant_type=authorization_code&client_id=1000.M31IZQXEBYRM38870QRPIKWTJT4A6R&client_secret=9bab95f464faf563041172fadd019610e4dc8ef452&code=1000.dc0ed7e65c3ba0b46e485fc121eee7a5.6dfd607e87c9e8410acb365ff67cd8ad&redirect_uri=http://priority.trutex.com/api/oauth2.callback

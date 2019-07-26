@@ -94,7 +94,7 @@
     <Compile Include="Console\cursorloc.vb" />
     <Compile Include="Inherits zoho_Data\Account.vb" />
     <Compile Include="Inherits zoho_Data\Custom_Trutex_Order.vb" />
-    <Compile Include="Inherits zoho_Data\zoho_ID.vb" />
+    <Compile Include="Inherits zoho_Data\zoho_LookUp.vb" />
     <Compile Include="Main.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -138,6 +138,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Syntax.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="test.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
