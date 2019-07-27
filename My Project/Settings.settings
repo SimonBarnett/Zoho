@@ -1,7 +1,21 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" UseMySettingsClassName="true">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="Accounts_URL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">accounts.zoho.eu</Value>
+    </Setting>
+    <Setting Name="refresh_token" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1000.2f4ee9ada222b1e5dfc752e6a1ffefe4.e238194f5f8d641d5aa038ee3f0e4599</Value>
+    </Setting>
+    <Setting Name="client_id" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1000.M31IZQXEBYRM38870QRPIKWTJT4A6R</Value>
+    </Setting>
+    <Setting Name="client_secret" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">9bab95f464faf563041172fadd019610e4dc8ef452</Value>
+    </Setting>
+    <Setting Name="ConnStr" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=10.0.0.152;Initial Catalog=tru;User ID=sa;Pwd=Trut3x</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

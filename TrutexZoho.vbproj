@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{51E65EFB-FD1B-471A-AC1B-AB9B9B2F3DD9}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>ConsoleApp3.oAuth</StartupObject>
+    <StartupObject>ConsoleApp3.Main</StartupObject>
     <RootNamespace>ConsoleApp3</RootNamespace>
     <AssemblyName>ConsoleApp3</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -93,8 +93,8 @@
     <Compile Include="Console\clArg.vb" />
     <Compile Include="Console\cursorloc.vb" />
     <Compile Include="Inherits zoho_Data\Account.vb" />
-    <Compile Include="Inherits zoho_Data\Custom_Trutex_Order.vb" />
-    <Compile Include="Inherits zoho_Data\zoho_LookUp.vb" />
+    <Compile Include="Zoho Classes\zoho_Data.vb" />
+    <Compile Include="Zoho Classes\zoho_LookUp.vb" />
     <Compile Include="Main.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -111,9 +111,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="oAuth.vb" />
-    <Compile Include="send.vb" />
-    <Compile Include="zoho_envelope.vb" />
+    <Compile Include="Zoho Classes\oAuth\oAuth.vb" />
+    <Compile Include="Zoho Classes\oAuth\zoho_Token.vb" />
+    <Compile Include="Zoho Classes\zoho_envelope.vb" />
+    <Compile Include="Zoho Classes\zoho_Response.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -138,9 +139,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Syntax.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="test.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

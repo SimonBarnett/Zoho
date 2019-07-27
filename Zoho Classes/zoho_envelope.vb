@@ -1,42 +1,22 @@
 ﻿Imports System.Data.SqlClient
+Imports System.IO
 Imports Newtonsoft.Json
-
-Public MustInherit Class zoho_Data
-
-    <JsonIgnore>
-    MustOverride ReadOnly Property EndPoint As String
-
-    Sub PopulateData(r As SqlDataReader)
-        For i As Integer = 0 To r.FieldCount - 1
-            If Len(r(i)) > 0 Then
-                Try
-                    Dim ob As Object = Me
-                    Dim name As String = r.GetName(i)
-
-                    While InStr(name, ".") > 0
-                        ob = CallByName(ob, Split(name, ".")(0), CallType.Get)
-                        name = name.Substring(InStr(name, "."))
-                    End While
-
-                    CallByName(ob, name, CallType.Set, r(i))
-
-
-                Catch ex As Exception
-                    Console.WriteLine("Missing property: {0}", r.GetName(i))
-
-                End Try
-
-            End If
-
-        Next
-
-    End Sub
-
-End Class
 
 Public Class zoho_envelope : Implements IDisposable
 
     Public data As New List(Of zoho_Data)
+
+#Region "Constructor"
+
+    Public Sub New(cmdstr As String, ByRef cn As SqlConnection, Optional trigger As String = "workflow")
+        _trigger = trigger
+        _cmd = New SqlCommand(cmdstr, cn)
+
+    End Sub
+
+#End Region
+
+#Region "Properties"
 
     Private _trigger As String
     Public Property trigger As String
@@ -48,12 +28,6 @@ Public Class zoho_envelope : Implements IDisposable
         End Set
     End Property
 
-    Public Sub New(cmdstr As String, cn As SqlConnection, Optional trigger As String = "workflow")
-        _trigger = trigger
-        cmd = New SqlCommand(cmdstr, cn)
-
-    End Sub
-
     Dim _cmd As SqlCommand
     <JsonIgnore>
     Public Property cmd As SqlCommand
@@ -64,6 +38,10 @@ Public Class zoho_envelope : Implements IDisposable
             _cmd = value
         End Set
     End Property
+
+#End Region
+
+#Region "Methods"
 
     Public Function toSerial() As String
 
@@ -77,6 +55,55 @@ Public Class zoho_envelope : Implements IDisposable
         )
 
     End Function
+
+    Public Sub Send(ByRef cn As SqlConnection)
+
+        Dim resp As zoho_Responses
+        Dim requestStream As Stream = Nothing
+        Dim uploadResponse As Net.HttpWebResponse = Nothing
+        Dim uploadRequest As Net.HttpWebRequest =
+            CType(Net.HttpWebRequest.Create(data(0).EndPoint), Net.HttpWebRequest)
+
+        With uploadRequest
+            .Method = "POST"
+            .Proxy = Nothing
+            .ContentType = "text/json"
+            .Headers.Add(String.Format("Authorization:Zoho-oauthtoken {0}", auth.Token.access_token))
+
+        End With
+
+        Dim myEncoder As New System.Text.ASCIIEncoding
+        Dim ms As MemoryStream = New MemoryStream(myEncoder.GetBytes(toSerial))
+
+        requestStream = uploadRequest.GetRequestStream()
+
+        ' Upload the JSON
+        Dim buffer(1024) As Byte
+        Dim bytesRead As Integer
+        While True
+            bytesRead = ms.Read(buffer, 0, buffer.Length)
+            If bytesRead = 0 Then
+                Exit While
+            End If
+            requestStream.Write(buffer, 0, bytesRead)
+        End While
+
+        requestStream.Close()
+
+        With uploadRequest.GetResponse()
+            Dim reader As New StreamReader(.GetResponseStream)
+            resp = JsonConvert.DeserializeObject(reader.ReadToEnd, GetType(zoho_Responses))
+
+        End With
+
+        For i As Integer = 0 To data.Count - 1
+            data(i).HandleResponse(cn, resp.data(i))
+
+        Next
+
+    End Sub
+
+#End Region
 
 #Region "IDisposable Support"
     Private disposedValue As Boolean ' To detect redundant calls

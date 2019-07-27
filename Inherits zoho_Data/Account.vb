@@ -1,7 +1,10 @@
 ﻿Imports System.Data.SqlClient
+Imports Newtonsoft.Json
 
 Public Class zoho_Account : Inherits zoho_Data
 
+    <JsonIgnore>
+    Public Property CUST As Integer
     Public Property Address_2 As String
     Public Property Address_3 As String
     Public Property AgentCode_Account_Manager As String
@@ -17,7 +20,7 @@ Public Class zoho_Account : Inherits zoho_Data
     Public Property Credit_Balance As Double?
     Public Property Credit_Currency_1 As String
     Public Property Credit_Hold_Date As Date?
-    Public Property Credit_Limit As DOUBLE?
+    Public Property Credit_Limit As Double?
     Public Property Customer_Group_Code_1 As String
     Public Property Customer_Number As String
     Public Property Customer_Group_Name1 As String
@@ -38,6 +41,7 @@ Public Class zoho_Account : Inherits zoho_Data
     ' Lookup properties
     Public Property Billing_Customer_Name As zoho_LookUp
     Public Property Owner As zoho_LookUp
+
     'Public Property Portal_Contact As zoho_LookUp
 
     Public Overrides ReadOnly Property EndPoint As String
@@ -46,6 +50,28 @@ Public Class zoho_Account : Inherits zoho_Data
         End Get
 
     End Property
+
+    Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+        Select Case resp.code.ToUpper
+            Case "SUCCESS"
+                Dim cmd As New SqlCommand(
+                    String.Format(
+                        "update CUSTOMERS set " &
+                        "ZOHO_ID = '{1}', " &
+                        "ZOHO_LASTSEND = {2}, " &
+                        "ZOHO_SENT = 'Y' " &
+                        "where CUST = {0}",
+                        CUST,
+                        resp.details.id,
+                        DateDiff(DateInterval.Minute, #01/01/1988#, Now).ToString
+                    ),
+                    cn
+                )
+
+        End Select
+
+    End Sub
 
     Public Sub New(r As SqlDataReader)
 
