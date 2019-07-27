@@ -68,6 +68,7 @@ Public Class zoho_Account : Inherits zoho_Data
                     ),
                     cn
                 )
+                cmd.ExecuteNonQuery()
 
         End Select
 
