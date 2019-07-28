@@ -93,8 +93,8 @@
     <Compile Include="Console\clArg.vb" />
     <Compile Include="Console\cursorloc.vb" />
     <Compile Include="Inherits zoho_Data\Account.vb" />
-    <Compile Include="Zoho Classes\zoho_Data.vb" />
-    <Compile Include="Zoho Classes\zoho_LookUp.vb" />
+    <Compile Include="Inherits zoho_Data\zoho_Data.vb" />
+    <Compile Include="Zoho Classes\Schema\zoho_LookUp.vb" />
     <Compile Include="Main.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -114,7 +114,8 @@
     <Compile Include="Zoho Classes\oAuth\oAuth.vb" />
     <Compile Include="Zoho Classes\oAuth\zoho_Token.vb" />
     <Compile Include="Zoho Classes\zoho_envelope.vb" />
-    <Compile Include="Zoho Classes\zoho_Response.vb" />
+    <Compile Include="Zoho Classes\Schema\zoho_Response.vb" />
+    <Compile Include="zoho_Module.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

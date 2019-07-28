@@ -1,10 +1,6 @@
 ﻿Imports System.Data.SqlClient
-Imports Newtonsoft.Json
 
 Public MustInherit Class zoho_Data
-
-    <JsonIgnore>
-    MustOverride ReadOnly Property EndPoint As String
 
     MustOverride Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
 

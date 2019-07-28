@@ -1,13 +1,42 @@
 ﻿Imports System.Data.SqlClient
 Imports Newtonsoft.Json
 
+Public Class zoho_Module_Account : Inherits zoho_Module
+
+    Public Overrides ReadOnly Property EndPoint As String
+        Get
+            Return "https://www.zohoapis.eu/crm/v2/Accounts"
+        End Get
+
+    End Property
+
+    Public Overrides ReadOnly Property sqlView As String
+        Get
+            Return "zoho_Accounts"
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property rowCount As Integer
+        Get
+            Return 2
+        End Get
+    End Property
+
+    Public Overrides Function zoho_item(ByRef r As SqlDataReader) As zoho_Data
+        Return New zoho_Account(r)
+
+    End Function
+
+End Class
+
 Public Class zoho_Account : Inherits zoho_Data
 
     <JsonIgnore>
     Public Property CUST As Integer
+
+    Public Property id As String
     Public Property Address_2 As String
     Public Property Address_3 As String
-    Public Property AgentCode_Account_Manager As String
     Public Property Billing_City As String
     Public Property Billing_Code As String
     Public Property Billing_Country As String
@@ -26,7 +55,7 @@ Public Class zoho_Account : Inherits zoho_Data
     Public Property Customer_Group_Name1 As String
     Public Property Customer_Status_1 As String
     Public Property Account_Name As String
-    Public Property Date_Account_Opened As Date?
+    Public Property Date_Account_Opened As String
     Public Property Description As String
     Public Property Fax As String
     Public Property On_Credit_Hold As Boolean
@@ -39,19 +68,14 @@ Public Class zoho_Account : Inherits zoho_Data
     Public Property Website As String
 
     ' Lookup properties
-    Public Property Billing_Customer_Name As zoho_LookUp
-    Public Property Owner As zoho_LookUp
 
+    'Public Property Billing_Customer_Name As zoho_LookUp
+    'Public Property Owner As zoho_LookUp
     'Public Property Portal_Contact As zoho_LookUp
 
-    Public Overrides ReadOnly Property EndPoint As String
-        Get
-            Return "https://www.zohoapis.eu/crm/v2/Accounts"
-        End Get
-
-    End Property
-
     Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+        Console.WriteLine(resp.toSerial)
 
         Select Case resp.code.ToUpper
             Case "SUCCESS"
@@ -64,7 +88,25 @@ Public Class zoho_Account : Inherits zoho_Data
                         "where CUST = {0}",
                         CUST,
                         resp.details.id,
-                        DateDiff(DateInterval.Minute, #01/01/1988#, Now).ToString
+                        DateDiff(
+                            DateInterval.Minute,
+                            #01/01/1988#,
+                            resp.details.Modified_Time
+                        ).ToString
+                    ),
+                    cn
+                )
+                cmd.ExecuteNonQuery()
+
+            Case Else
+                Dim cmd As New SqlCommand(
+                    String.Format(
+                        "update CUSTOMERS set " &
+                        "ZOHO_FAILMESS = '{1}', " &
+                        "ZOHO_FAIL = 'Y' " &
+                        "where CUST = {0}",
+                        CUST,
+                        resp.message
                     ),
                     cn
                 )
@@ -76,8 +118,8 @@ Public Class zoho_Account : Inherits zoho_Data
 
     Public Sub New(r As SqlDataReader)
 
-        Billing_Customer_Name = New zoho_LookUp
-        Owner = New zoho_LookUp
+        'Billing_Customer_Name = New zoho_LookUp
+        'Owner = New zoho_LookUp
         'Portal_Contact = New zoho_LookUp
 
         PopulateData(r)
