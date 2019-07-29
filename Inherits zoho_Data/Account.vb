@@ -48,7 +48,7 @@ Public Class zoho_Account : Inherits zoho_Data
     Public Property Country_Code1 As String
     Public Property Credit_Balance As Double?
     Public Property Credit_Currency_1 As String
-    Public Property Credit_Hold_Date As Date?
+    Public Property Credit_Hold_Date As String
     Public Property Credit_Limit As Double?
     Public Property Customer_Group_Code_1 As String
     Public Property Customer_Number As String
@@ -69,8 +69,8 @@ Public Class zoho_Account : Inherits zoho_Data
 
     ' Lookup properties
 
-    'Public Property Billing_Customer_Name As zoho_LookUp
-    'Public Property Owner As zoho_LookUp
+    Public Property Billing_Customer_Name As zoho_LookUp
+    Public Property Owner As zoho_LookUp
     'Public Property Portal_Contact As zoho_LookUp
 
     Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
@@ -118,8 +118,8 @@ Public Class zoho_Account : Inherits zoho_Data
 
     Public Sub New(r As SqlDataReader)
 
-        'Billing_Customer_Name = New zoho_LookUp
-        'Owner = New zoho_LookUp
+        Billing_Customer_Name = New zoho_LookUp
+        Owner = New zoho_LookUp
         'Portal_Contact = New zoho_LookUp
 
         PopulateData(r)
