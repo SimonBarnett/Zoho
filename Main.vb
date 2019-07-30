@@ -19,8 +19,11 @@ Module Main
 
             Using acc As New zoho_Module_Account
                 With acc
-                    .Process(zoho_Module.eMethod.UPDATE, "workflow")
-                    .Process(zoho_Module.eMethod.INSERT, "workflow")
+                    .Columns("CUST", "id", "AgentCode_Account_Manager", "AgentName_Account_Manager")
+                    .Process(zoho_Module.eMethod.CUSTOM, "workflow")
+
+                    '.Process(zoho_Module.eMethod.UPDATE, "workflow")
+                    '.Process(zoho_Module.eMethod.INSERT, "workflow")
 
                 End With
 

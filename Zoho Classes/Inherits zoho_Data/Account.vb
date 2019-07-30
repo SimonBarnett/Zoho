@@ -58,7 +58,7 @@ Public Class zoho_Account : Inherits zoho_Data
     Public Property Date_Account_Opened As String
     Public Property Description As String
     Public Property Fax As String
-    Public Property On_Credit_Hold As Boolean
+    Public Property On_Credit_Hold As Boolean?
     Public Property Payment_Terms_Code_1 As String
     Public Property Payment_Terms_Description_1 As String
     Public Property Phone As String
@@ -66,6 +66,8 @@ Public Class zoho_Account : Inherits zoho_Data
     Public Property Shipment_Mode_Name_1 As String
     Public Property VAT_Number As String
     Public Property Website As String
+    Public Property AgentCode_Account_Manager As String
+    Public Property AgentName_Account_Manager As String
 
     ' Lookup properties
 

@@ -22,15 +22,37 @@ Public Class zoho_envelope : Inherits base_schema
         Dim cmdstr As New StringBuilder
         With _zModule
             cmdstr.AppendFormat(
-            "Select top {0} * from {1} ",
-            .rowCount.ToString,
-            .sqlView
-        )
+                "Select top {0} ",
+                .rowCount.ToString
+            )
+            Select Case .Method
+                Case zoho_Module.eMethod.CUSTOM
+                    For Each str As String In .Custom_Columns
+                        cmdstr.Append(str)
+                        If Not str = .Custom_Columns.Last Then
+                            cmdstr.Append(", ")
+
+                        Else
+                            cmdstr.Append(" ")
+
+                        End If
+                    Next
+
+                Case Else
+                    cmdstr.Append("* ")
+
+            End Select
+
+            cmdstr.AppendFormat(
+                "from {0} ",
+                .sqlView
+            )
+
             Select Case .Method
                 Case zoho_Module.eMethod.INSERT
                     cmdstr.Append("where id = ''")
 
-                Case zoho_Module.eMethod.UPDATE
+                Case zoho_Module.eMethod.UPDATE, zoho_Module.eMethod.CUSTOM
                     cmdstr.Append("where id <> ''")
 
             End Select
@@ -73,7 +95,7 @@ Public Class zoho_envelope : Inherits base_schema
                 Case zoho_Module.eMethod.INSERT
                     .Method = "POST"
 
-                Case zoho_Module.eMethod.UPDATE
+                Case zoho_Module.eMethod.UPDATE, zoho_Module.eMethod.CUSTOM
                     .Method = "PUT"
 
             End Select
@@ -121,8 +143,10 @@ Public Class zoho_envelope : Inherits base_schema
         End With
 
         For i As Integer = 0 To data.Count - 1
-            Console.WriteLine(data(i).toSerial)
-            Console.WriteLine(resp.data(i).toSerial)
+            If args.Keys.Contains("v") Then
+                Console.WriteLine(data(i).toSerial)
+                Console.WriteLine(resp.data(i).toSerial)
+            End If
 
             data(i).HandleResponse(cn, resp.data(i))
 

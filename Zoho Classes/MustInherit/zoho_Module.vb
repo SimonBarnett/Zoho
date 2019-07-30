@@ -6,8 +6,11 @@ Public MustInherit Class zoho_Module : Implements IDisposable
     Public Enum eMethod
         INSERT
         UPDATE
+        CUSTOM
 
     End Enum
+
+    Public Property Custom_Columns As New List(Of String)
 
 #Region "Properties"
 
@@ -30,6 +33,13 @@ Public MustInherit Class zoho_Module : Implements IDisposable
 #End Region
 
 #Region "Methods"
+
+    Public Sub Columns(ParamArray Cols())
+        For Each str As String In Cols
+            Custom_Columns.Add(str)
+
+        Next
+    End Sub
 
     MustOverride Function zoho_item(ByRef r As SqlDataReader) As zoho_Data
 
