@@ -6,13 +6,13 @@
       <Value Profile="(Default)">accounts.zoho.eu</Value>
     </Setting>
     <Setting Name="refresh_token" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">1000.2f4ee9ada222b1e5dfc752e6a1ffefe4.e238194f5f8d641d5aa038ee3f0e4599</Value>
+      <Value Profile="(Default)">1000.17517046e00a4daf0b6d04252d7e1c6f.9680c16d676884867844c99f5a61a3f6</Value>
     </Setting>
     <Setting Name="client_id" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">1000.M31IZQXEBYRM38870QRPIKWTJT4A6R</Value>
+      <Value Profile="(Default)">1000.8D2BV9BK3J6S20626D9YREJMYBTO7R</Value>
     </Setting>
     <Setting Name="client_secret" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">9bab95f464faf563041172fadd019610e4dc8ef452</Value>
+      <Value Profile="(Default)">09601fd3487b4c399f005c37a02d36da6519b37be2</Value>
     </Setting>
     <Setting Name="ConnStr" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Data Source=10.0.0.152;Initial Catalog=tru;User ID=sa;Pwd=Trut3x</Value>

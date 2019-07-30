@@ -75,44 +75,45 @@ Public Class zoho_Account : Inherits zoho_Data
 
     Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
 
-        Console.WriteLine(resp.toSerial)
+        With resp
+            Select Case .code.ToUpper
+                Case "SUCCESS"
+                    Dim cmd As New SqlCommand(
+                        String.Format(
+                            "update CUSTOMERS set " &
+                            "ZOHO_ID = '{1}', " &
+                            "ZOHO_LASTSEND = {2}, " &
+                            "ZOHO_SENT = 'Y' " &
+                            "where CUST = {0}",
+                            CUST,
+                            .details.id,
+                            DateDiff(
+                                DateInterval.Minute,
+                                #01/01/1988#,
+                                .details.Modified_Time
+                            ).ToString
+                        ),
+                        cn
+                    )
+                    cmd.ExecuteNonQuery()
 
-        Select Case resp.code.ToUpper
-            Case "SUCCESS"
-                Dim cmd As New SqlCommand(
-                    String.Format(
-                        "update CUSTOMERS set " &
-                        "ZOHO_ID = '{1}', " &
-                        "ZOHO_LASTSEND = {2}, " &
-                        "ZOHO_SENT = 'Y' " &
-                        "where CUST = {0}",
-                        CUST,
-                        resp.details.id,
-                        DateDiff(
-                            DateInterval.Minute,
-                            #01/01/1988#,
-                            resp.details.Modified_Time
-                        ).ToString
-                    ),
-                    cn
-                )
-                cmd.ExecuteNonQuery()
+                Case Else
+                    Dim cmd As New SqlCommand(
+                        String.Format(
+                            "update CUSTOMERS set " &
+                            "ZOHO_FAILMESS = '{1}', " &
+                            "ZOHO_FAIL = 'Y' " &
+                            "where CUST = {0}",
+                            CUST,
+                            .message
+                        ),
+                        cn
+                    )
+                    cmd.ExecuteNonQuery()
 
-            Case Else
-                Dim cmd As New SqlCommand(
-                    String.Format(
-                        "update CUSTOMERS set " &
-                        "ZOHO_FAILMESS = '{1}', " &
-                        "ZOHO_FAIL = 'Y' " &
-                        "where CUST = {0}",
-                        CUST,
-                        resp.message
-                    ),
-                    cn
-                )
-                cmd.ExecuteNonQuery()
+            End Select
 
-        End Select
+        End With
 
     End Sub
 

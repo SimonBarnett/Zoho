@@ -90,10 +90,9 @@ Public Class clArg
     Private Function LogFolder() As DirectoryInfo
         Return New DirectoryInfo(
             Path.Combine(
-                Environment.GetEnvironmentVariable("SystemRoot"),
+                My.Application.Info.DirectoryPath,
                 String.Format(
-                    "logs\{0}\{1}",
-                    System.Reflection.Assembly.GetExecutingAssembly().ManifestModule.NAME,
+                    "log\{0}",
                     Now.ToString("yyyy-MM")
                 )
             )

@@ -65,7 +65,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("1000.2f4ee9ada222b1e5dfc752e6a1ffefe4.e238194f5f8d641d5aa038ee3f0e4599")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1000.17517046e00a4daf0b6d04252d7e1c6f.9680c16d676884867844c99f5a61a3f6")>  _
         Public ReadOnly Property refresh_token() As String
             Get
                 Return CType(Me("refresh_token"),String)
@@ -74,7 +74,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("1000.M31IZQXEBYRM38870QRPIKWTJT4A6R")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1000.8D2BV9BK3J6S20626D9YREJMYBTO7R")>  _
         Public ReadOnly Property client_id() As String
             Get
                 Return CType(Me("client_id"),String)
@@ -83,7 +83,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("9bab95f464faf563041172fadd019610e4dc8ef452")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("09601fd3487b4c399f005c37a02d36da6519b37be2")>  _
         Public ReadOnly Property client_secret() As String
             Get
                 Return CType(Me("client_secret"),String)

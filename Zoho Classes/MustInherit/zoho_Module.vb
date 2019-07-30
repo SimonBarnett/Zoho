@@ -54,7 +54,7 @@ Public MustInherit Class zoho_Module : Implements IDisposable
 
                     End Using
 
-                    Console.WriteLine(z.toSerial)
+                    'Console.WriteLine(z.toSerial)
                     z.Send(cn)
 
                 End Using

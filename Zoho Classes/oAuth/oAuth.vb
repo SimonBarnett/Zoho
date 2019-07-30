@@ -26,6 +26,8 @@ Class oAuth
 
     Private Sub RefreshToken()
 
+        Console.Write(String.Format("Requesting security token from {0}...", My.Settings.Accounts_URL))
+
         Dim requestStream As Stream = Nothing
         Dim uploadResponse As Net.HttpWebResponse = Nothing
         Dim uploadRequest As Net.HttpWebRequest = CType(
@@ -48,6 +50,9 @@ Class oAuth
         Dim reader As New StreamReader(uploadRequest.GetResponse().GetResponseStream)
 
         _token = JsonConvert.DeserializeObject(reader.ReadToEnd, GetType(zoho_Token))
+
+        Console.WriteLine("Ok.")
+        Console.WriteLine(_token.toSerial)
 
     End Sub
 

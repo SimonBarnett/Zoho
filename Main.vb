@@ -14,9 +14,12 @@ Module Main
             args = New clArg(arg)
             auth = New oAuth
 
+            'Dim c As New zoho_Users()
+            'c.Send()
+
             Using acc As New zoho_Module_Account
                 With acc
-                    '.Process(zoho_Module.eMethod.UPDATE, "workflow")
+                    .Process(zoho_Module.eMethod.UPDATE, "workflow")
                     .Process(zoho_Module.eMethod.INSERT, "workflow")
 
                 End With

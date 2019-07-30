@@ -1,4 +1,5 @@
 ﻿Imports System.Timers
+Imports Newtonsoft.Json
 
 Public Class zoho_Token
 
@@ -27,5 +28,18 @@ Public Class zoho_Token
         expires_in_sec -= 1
 
     End Sub
+
+    Public Function toSerial() As String
+
+        Dim s As New JsonSerializerSettings
+        s.NullValueHandling = NullValueHandling.Ignore
+
+        Return JsonConvert.SerializeObject(
+            Me,
+            Newtonsoft.Json.Formatting.Indented,
+            s
+        )
+
+    End Function
 
 End Class

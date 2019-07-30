@@ -93,7 +93,11 @@
     <Compile Include="Console\clArg.vb" />
     <Compile Include="Console\cursorloc.vb" />
     <Compile Include="Inherits zoho_Data\Account.vb" />
-    <Compile Include="Inherits zoho_Data\zoho_Data.vb" />
+    <Compile Include="Zoho Classes\Requests\zoho_Profiles.vb" />
+    <Compile Include="Zoho Classes\Requests\zoho_Roles.vb" />
+    <Compile Include="Zoho Classes\Requests\zoho_Users.vb" />
+    <Compile Include="Zoho Classes\Schema\base_schema.vb" />
+    <Compile Include="Zoho Classes\MustInherit\zoho_Data.vb" />
     <Compile Include="Zoho Classes\Schema\zoho_LookUp.vb" />
     <Compile Include="Main.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -113,9 +117,10 @@
     </Compile>
     <Compile Include="Zoho Classes\oAuth\oAuth.vb" />
     <Compile Include="Zoho Classes\oAuth\zoho_Token.vb" />
-    <Compile Include="Zoho Classes\zoho_envelope.vb" />
+    <Compile Include="Zoho Classes\MustInherit\zoho_envelope.vb" />
     <Compile Include="Zoho Classes\Schema\zoho_Response.vb" />
-    <Compile Include="zoho_Module.vb" />
+    <Compile Include="Zoho Classes\MustInherit\zoho_Module.vb" />
+    <Compile Include="Zoho Classes\MustInherit\zoho_Request.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -140,6 +145,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Syntax.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\SQL\zoho_Accounts.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

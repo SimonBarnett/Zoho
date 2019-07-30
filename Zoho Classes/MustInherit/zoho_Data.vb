@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
-Public MustInherit Class zoho_Data
+Public MustInherit Class zoho_Data : Inherits base_schema
 
     MustOverride Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
 
