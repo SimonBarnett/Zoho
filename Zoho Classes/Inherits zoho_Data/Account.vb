@@ -18,7 +18,7 @@ Public Class zoho_Module_Account : Inherits zoho_Module
 
     Public Overrides ReadOnly Property rowCount As Integer
         Get
-            Return 2
+            Return 100
         End Get
     End Property
 
