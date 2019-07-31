@@ -17,7 +17,7 @@ Public Class zoho_Module_Contacts : Inherits zoho_Module
 
     Public Overrides ReadOnly Property rowCount As Integer
         Get
-            Return 2
+            Return 100
         End Get
     End Property
 
@@ -63,7 +63,7 @@ Public Class zoho_Contact : Inherits zoho_Data
                             "ZOHO_ID = '{1}', " &
                             "ZOHO_LASTSEND = {2}, " &
                             "ZOHO_SENT = 'Y' " &
-                            "where CUST = {0}",
+                            "where PHONE = {0}",
                             PHONEid,
                             .details.id,
                             DateDiff(
@@ -82,7 +82,7 @@ Public Class zoho_Contact : Inherits zoho_Data
                             "update PHONEBOOK set " &
                             "ZOHO_FAILMESS = '{1}', " &
                             "ZOHO_FAIL = 'Y' " &
-                            "where CUST = {0}",
+                            "where PHONE = {0}",
                             PHONEid,
                             .message
                         ),

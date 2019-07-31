@@ -19,11 +19,29 @@ Module Main
 
             Using acc As New zoho_Module_Account
                 With acc
-                    .Columns("CUST", "id", "AgentCode_Account_Manager", "AgentName_Account_Manager")
-                    .Process(zoho_Module.eMethod.CUSTOM, "workflow")
+                    '.Columns("CUST", "id", "AgentCode_Account_Manager", "AgentName_Account_Manager")
+                    '.Process(zoho_Module.eMethod.CUSTOM, "workflow")
 
-                    '.Process(zoho_Module.eMethod.UPDATE, "workflow")
-                    '.Process(zoho_Module.eMethod.INSERT, "workflow")
+                    .Process(zoho_Module.eMethod.UPDATE, "workflow")
+                    .Process(zoho_Module.eMethod.INSERT, "workflow")
+
+                End With
+
+            End Using
+
+            Using contact As New zoho_Module_Contacts
+                With contact
+                    .Process(zoho_Module.eMethod.UPDATE, "workflow")
+                    .Process(zoho_Module.eMethod.INSERT, "workflow")
+
+                End With
+
+            End Using
+
+            Using site As New zoho_Module_Sites
+                With site
+                    .Process(zoho_Module.eMethod.UPDATE, "workflow")
+                    .Process(zoho_Module.eMethod.INSERT, "workflow")
 
                 End With
 

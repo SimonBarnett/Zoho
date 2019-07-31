@@ -93,6 +93,8 @@
     <Compile Include="Console\clArg.vb" />
     <Compile Include="Console\cursorloc.vb" />
     <Compile Include="Zoho Classes\Inherits zoho_Data\Account.vb" />
+    <Compile Include="Zoho Classes\Inherits zoho_Data\Contacts.vb" />
+    <Compile Include="Zoho Classes\Inherits zoho_Data\Sites.vb" />
     <Compile Include="Zoho Classes\Requests\zoho_Profiles.vb" />
     <Compile Include="Zoho Classes\Requests\zoho_Roles.vb" />
     <Compile Include="Zoho Classes\Requests\zoho_Users.vb" />

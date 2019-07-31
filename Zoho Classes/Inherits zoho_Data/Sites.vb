@@ -62,7 +62,7 @@ Public Class zoho_Site : Inherits zoho_Data
                             "ZOHO_ID = '{1}', " &
                             "ZOHO_LASTSEND = {2}, " &
                             "ZOHO_SENT = 'Y' " &
-                            "where CUST = {0}",
+                            "where DESTCODE = {0}",
                             DESTCODE,
                             .details.id,
                             DateDiff(
@@ -81,7 +81,7 @@ Public Class zoho_Site : Inherits zoho_Data
                             "update DESTCODES set " &
                             "ZOHO_FAILMESS = '{1}', " &
                             "ZOHO_FAIL = 'Y' " &
-                            "where CUST = {0}",
+                            "where DESTCODE = {0}",
                             DESTCODE,
                             .message
                         ),
