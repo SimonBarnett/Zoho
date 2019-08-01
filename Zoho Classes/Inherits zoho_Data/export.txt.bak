@@ -1,0 +1,662 @@
+Imports System.Data.SqlClient
+Imports Newtonsoft.Json
+
+Public Class zoho_Module_CustomerLinks : Inherits zoho_Module
+
+    Public Overrides ReadOnly Property EndPoint As String
+        Get
+            Return "https://www.zohoapis.eu/crm/v2/CustomerLinks"
+        End Get
+
+    End Property
+
+    Public Overrides ReadOnly Property sqlView As String
+        Get
+            Return "zoho_CustomerLinks"
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property rowCount As Integer
+        Get
+            Return 100
+        End Get
+    End Property
+
+    Public Overrides Function zoho_item(ByRef r As SqlDataReader) As zoho_Data
+        Return New CustomerLink(r)
+
+    End Function
+
+End Class
+
+Public Class CustomerLink  : Inherits zoho_Data
+	Public Property Default_School As Boolean?
+	Public Property Generated_by_Priority As Boolean?
+	Public Property School_Number As String
+	Public Property School_Customer As String
+	Public Property Owner As zoho_lookup
+	Public Property LinkingFrom As zoho_lookup
+	Public Property LinkingTo As zoho_lookup
+	Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+    End Sub
+
+    Public Sub New(r As SqlDataReader)
+
+        Owner = New zoho_LookUp
+        LinkingFrom = New zoho_LookUp
+        LinkingTo = New zoho_LookUp
+
+        PopulateData(r)
+
+    End Sub
+End Class
+
+Imports System.Data.SqlClient
+Imports Newtonsoft.Json
+
+Public Class zoho_Module_Part_Catalogue : Inherits zoho_Module
+
+    Public Overrides ReadOnly Property EndPoint As String
+        Get
+            Return "https://www.zohoapis.eu/crm/v2/Part_Catalogue"
+        End Get
+
+    End Property
+
+    Public Overrides ReadOnly Property sqlView As String
+        Get
+            Return "zoho_Part_Catalogue"
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property rowCount As Integer
+        Get
+            Return 100
+        End Get
+    End Property
+
+    Public Overrides Function zoho_item(ByRef r As SqlDataReader) As zoho_Data
+        Return New Part_Catalogue(r)
+
+    End Function
+
+End Class
+
+Public Class Part_Catalogue : Inherits zoho_Data
+Public Property Name As String
+Public Property Part_Description As String
+Public Property Bar_Code_Number As String
+Public Property Base_Product_Description As String
+Public Property Status_of_Part As String
+Public Property Range As String
+Public Property VAT_Group_Code As String
+Public Property Base_Product As Boolean?
+Public Property Is_this_Separate As Boolean?
+Public Property Available_for_Sale As String
+Public Property Valid_To As String
+Public Property Valid_From As String
+Public Property Standard_Cost As String
+Public Property Cost As String
+Public Property Currency_Code As String
+Public Property Base_Product_Code As zoho_lookup
+Public Property School_Number As zoho_lookup
+Public Property Owner As zoho_lookup
+	Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+    End Sub
+
+    Public Sub New(r As SqlDataReader)
+
+        Base_Product_Code = New zoho_LookUp
+        School_Number = New zoho_LookUp
+        Owner = New zoho_LookUp
+
+        PopulateData(r)
+
+    End Sub
+End Class
+
+Imports System.Data.SqlClient
+Imports Newtonsoft.Json
+
+Public Class zoho_Module_Customer_Price_Lists : Inherits zoho_Module
+
+    Public Overrides ReadOnly Property EndPoint As String
+        Get
+            Return "https://www.zohoapis.eu/crm/v2/Customer_Price_Lists"
+        End Get
+
+    End Property
+
+    Public Overrides ReadOnly Property sqlView As String
+        Get
+            Return "zoho_Customer_Price_Lists"
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property rowCount As Integer
+        Get
+            Return 100
+        End Get
+    End Property
+
+    Public Overrides Function zoho_item(ByRef r As SqlDataReader) As zoho_Data
+        Return New Customer_Price_Lists(r)
+
+    End Function
+
+End Class
+
+Public Class Customer_Price_Lists : Inherits zoho_Data
+Public Property Name As String
+Public Property List_Description As String
+Public Property Currency_Code As String
+Public Property Valid_List_Date As String
+Public Property In_Use As Boolean?
+Public Property Owner As zoho_lookup
+	Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+    End Sub
+
+    Public Sub New(r As SqlDataReader)
+
+        Owner = New zoho_LookUp
+
+        PopulateData(r)
+
+    End Sub
+End Class
+
+Imports System.Data.SqlClient
+Imports Newtonsoft.Json
+
+Public Class zoho_Module_Customers_X_Price_Lists : Inherits zoho_Module
+
+    Public Overrides ReadOnly Property EndPoint As String
+        Get
+            Return "https://www.zohoapis.eu/crm/v2/Customers_X_Price_Lists"
+        End Get
+
+    End Property
+
+    Public Overrides ReadOnly Property sqlView As String
+        Get
+            Return "zoho_Customers_X_Price_Lists"
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property rowCount As Integer
+        Get
+            Return 100
+        End Get
+    End Property
+
+    Public Overrides Function zoho_item(ByRef r As SqlDataReader) As zoho_Data
+        Return New Customers_X_Price_Lists(r)
+
+    End Function
+
+End Class
+
+Public Class Customers_X_Price_Lists : Inherits zoho_Data
+Public Property Price_List_Priority As String
+Public Property Customer_Price_Lists As zoho_lookup
+Public Property Customers As zoho_lookup
+Public Property Owner As zoho_lookup
+	Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+    End Sub
+
+    Public Sub New(r As SqlDataReader)
+
+        Customer_Price_Lists = New zoho_LookUp
+        Customers = New zoho_LookUp
+	Owner = New zoho_LookUp
+
+        PopulateData(r)
+
+    End Sub
+End Class
+
+Imports System.Data.SqlClient
+Imports Newtonsoft.Json
+
+Public Class zoho_Module_Part_Prices : Inherits zoho_Module
+
+    Public Overrides ReadOnly Property EndPoint As String
+        Get
+            Return "https://www.zohoapis.eu/crm/v2/Part_Prices"
+        End Get
+
+    End Property
+
+    Public Overrides ReadOnly Property sqlView As String
+        Get
+            Return "zoho_Part_Prices"
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property rowCount As Integer
+        Get
+            Return 100
+        End Get
+    End Property
+
+    Public Overrides Function zoho_item(ByRef r As SqlDataReader) As zoho_Data
+        Return New Part_Prices(r)
+
+    End Function
+
+End Class
+
+Public Class Part_Prices : Inherits zoho_Data
+Public Property Name As String
+Public Property Quantity As String
+Public Property Price As String
+Public Property Price_including_VAT As String
+Public Property Currency_Code1 As String
+Public Property VAT_Group_Code1 As String
+Public Property Part_Code As zoho_lookup
+Public Property Customer_Price_List As zoho_lookup
+Public Property Owner As zoho_lookup
+	Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+    End Sub
+
+    Public Sub New(r As SqlDataReader)
+
+        Part_Code = New zoho_LookUp
+        Customer_Price_List = New zoho_LookUp
+	Owner = New zoho_LookUp
+
+        PopulateData(r)
+
+    End Sub
+End Class
+
+Imports System.Data.SqlClient
+Imports Newtonsoft.Json
+
+Public Class zoho_Module_Custom_Trutex_Orders : Inherits zoho_Module
+
+    Public Overrides ReadOnly Property EndPoint As String
+        Get
+            Return "https://www.zohoapis.eu/crm/v2/Custom_Trutex_Orders"
+        End Get
+
+    End Property
+
+    Public Overrides ReadOnly Property sqlView As String
+        Get
+            Return "zoho_Custom_Trutex_Orders"
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property rowCount As Integer
+        Get
+            Return 100
+        End Get
+    End Property
+
+    Public Overrides Function zoho_item(ByRef r As SqlDataReader) As zoho_Data
+        Return New Custom_Trutex_Orders(r)
+
+    End Function
+
+End Class
+
+Public Class Custom_Trutex_Orders : Inherits zoho_Data
+Public Property Customer_Number As String
+Public Property Priority_Date_of_Sales_Order As String
+Public Property Name As String
+Public Property Status As String
+Public Property Type_of_Sale_Description As String
+Public Property Type_of_Sale_Code As String
+Public Property To_Consignment_Warehouse_Name As String
+Public Property To_Consignment_Warehouse_Code As String
+Public Property Price_Quote_Number As String
+Public Property Customer_PO As String
+Public Property Customer_PO_Details As String
+Public Property Price_List As String
+Public Property Price_after_Discount1 As double?
+Public Property VAT1 As double?
+Public Property Final_Price1 As double?
+Public Property Currency_Code As String
+Public Property Payment_Terms_Description As String
+Public Property Payment_Terms_Code As String
+Public Property Order_Received_Date As String
+Public Property Site_Contact As String
+Public Property Site_Phone_Number As String
+Public Property Street_Address As String
+Public Property Address_2 As String
+Public Property Address_3 As String
+Public Property City As String
+Public Property County As String
+Public Property Post_Code As String
+Public Property Country As String
+Public Property Details As String
+Public Property Customer As zoho_lookup
+Public Property Price_List_Looked_Up As zoho_lookup
+Public Property Site_Code As zoho_lookup
+Public Property Owner As zoho_lookup
+	Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+    End Sub
+
+    Public Sub New(r As SqlDataReader)
+
+        Customer = New zoho_LookUp
+        Price_List_Looked_Up = New zoho_LookUp
+        Site_Code = New zoho_LookUp
+	Owner = New zoho_LookUp
+
+        PopulateData(r)
+
+    End Sub
+End Class
+
+Imports System.Data.SqlClient
+Imports Newtonsoft.Json
+
+Public Class zoho_Module_Custom_Trutex_Order_Lines : Inherits zoho_Module
+
+    Public Overrides ReadOnly Property EndPoint As String
+        Get
+            Return "https://www.zohoapis.eu/crm/v2/Custom_Trutex_Order_Lines"
+        End Get
+
+    End Property
+
+    Public Overrides ReadOnly Property sqlView As String
+        Get
+            Return "zoho_Custom_Trutex_Order_Lines"
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property rowCount As Integer
+        Get
+            Return 100
+        End Get
+    End Property
+
+    Public Overrides Function zoho_item(ByRef r As SqlDataReader) As zoho_Data
+        Return New zoho_Account(r)
+
+    End Function
+
+End Class
+
+Public Class Custom_Trutex_Order_Lines : Inherits zoho_Data
+Public Property Name As String
+Public Property Part_Description As String
+Public Property Part_Status As String
+Public Property Quantity As integer?
+Public Property Reserved_Quantity As String
+Public Property Price As String
+Public Property Unit_Price_including_VAT As double?
+Public Property Price_Source As String
+Public Property Customer_Requested_Date As String
+Public Property Ship_Due_Date As String
+Public Property Balance_Quantity_Outstanding As integer?
+Public Property Closed As Boolean?
+Public Property Extended_Total_Price As double?
+Public Property Line_Type As String
+Public Property Part_Code As zoho_lookup
+Public Property Custom_Trutex_Order As zoho_lookup
+Public Property Owner As zoho_lookup
+	Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+    End Sub
+
+    Public Sub New(r As SqlDataReader)
+
+        Part_Code = New zoho_LookUp
+        Custom_Trutex_Order = New zoho_LookUp
+	Owner = New zoho_LookUp
+
+        PopulateData(r)
+
+    End Sub
+End Class
+
+Imports System.Data.SqlClient
+Imports Newtonsoft.Json
+
+Public Class zoho_Module_Sales_Order_Line_Trackings : Inherits zoho_Module
+
+    Public Overrides ReadOnly Property EndPoint As String
+        Get
+            Return "https://www.zohoapis.eu/crm/v2/Sales_Order_Line_Trackings"
+        End Get
+
+    End Property
+
+    Public Overrides ReadOnly Property sqlView As String
+        Get
+            Return "zoho_Sales_Order_Line_Trackings"
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property rowCount As Integer
+        Get
+            Return 100
+        End Get
+    End Property
+
+    Public Overrides Function zoho_item(ByRef r As SqlDataReader) As zoho_Data
+        Return New zoho_Account(r)
+
+    End Function
+
+End Class
+
+Public Class Sales_Order_Line_Trackings : Inherits zoho_Data
+Public Property Name As String
+Public Property Date As String
+Public Property Quantity As integer?
+Public Property Inventory_Transaction_Type As String
+Public Property Document_Number As String
+Public Property Sales_Order_Line As zoho_lookup
+Public Property Trutex_Sales_Order As zoho_lookup
+Public Property Owner As zoho_lookup
+	Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+    End Sub
+
+    Public Sub New(r As SqlDataReader)
+
+        Sales_Order_Line = New zoho_LookUp
+        Trutex_Sales_Order = New zoho_LookUp
+	Owner = New zoho_LookUp
+
+        PopulateData(r)
+
+    End Sub
+End Class
+
+
+Imports System.Data.SqlClient
+Imports Newtonsoft.Json
+
+Public Class zoho_Module_Tasks : Inherits zoho_Module
+
+    Public Overrides ReadOnly Property EndPoint As String
+        Get
+            Return "https://www.zohoapis.eu/crm/v2/Tasks"
+        End Get
+
+    End Property
+
+    Public Overrides ReadOnly Property sqlView As String
+        Get
+            Return "zoho_Tasks"
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property rowCount As Integer
+        Get
+            Return 100
+        End Get
+    End Property
+
+    Public Overrides Function zoho_item(ByRef r As SqlDataReader) As zoho_Data
+        Return New Tasks(r)
+
+    End Function
+
+End Class
+
+Public Class Tasks : Inherits zoho_Data
+Public Property Subject As String
+Public Property $se_module As String
+Public Property Generated_by As String
+Public Property Status As String
+Public Property Due_Date As String
+Public Property Task_Code As String
+Public Property Description As String
+Public Property Explanation_of_Task As String
+Public Property Date_Recorded_with_Timestamp As DateTime?
+Public Property Associated_Document_Number As String
+Public Property Associated_Document_Description As String
+Public Property Order_Received_Date As String
+Public Property Closed_Time As DateTime?
+Public Property Priority As String
+Public Property Owner As zoho_lookup
+Public Property Who_Id As zoho_lookup
+Public Property What_Id As zoho_lookup
+	Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+    End Sub
+
+    Public Sub New(r As SqlDataReader)
+
+        Who_Id = New zoho_LookUp
+        What_Id = New zoho_LookUp
+	Owner = New zoho_LookUp
+
+        PopulateData(r)
+
+    End Sub
+End Class
+
+Imports System.Data.SqlClient
+Imports Newtonsoft.Json
+
+Public Class zoho_Module_Service_Calls : Inherits zoho_Module
+
+    Public Overrides ReadOnly Property EndPoint As String
+        Get
+            Return "https://www.zohoapis.eu/crm/v2/Service_Calls"
+        End Get
+
+    End Property
+
+    Public Overrides ReadOnly Property sqlView As String
+        Get
+            Return "zoho_Service_Calls"
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property rowCount As Integer
+        Get
+            Return 100
+        End Get
+    End Property
+
+    Public Overrides Function zoho_item(ByRef r As SqlDataReader) As zoho_Data
+        Return New Service_Calls(r)
+
+    End Function
+
+End Class
+
+Public Class Service_Calls : Inherits zoho_Data
+Public Property Name As String
+Public Property Customer_Number As String
+Public Property Date_Service_Call_Opened As String
+Public Property RMA_Number As String
+Public Property Status_of_Call As String
+Public Property Price_After_Discount As double?
+Public Property VAT As double?
+Public Property Total_Price As double?
+Public Property Currency_Code As String
+Public Property Customer_Site As zoho_lookup
+Public Property Owner As zoho_lookup
+Public Property Customer_Name As zoho_lookup
+	Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+    End Sub
+
+    Public Sub New(r As SqlDataReader)
+
+        Customer_Site = New zoho_LookUp
+        Customer_Name = New zoho_LookUp
+	Owner = New zoho_LookUp
+
+        PopulateData(r)
+
+    End Sub
+End Class
+
+Imports System.Data.SqlClient
+Imports Newtonsoft.Json
+
+Public Class zoho_Module_Service_Report_Parts : Inherits zoho_Module
+
+    Public Overrides ReadOnly Property EndPoint As String
+        Get
+            Return "https://www.zohoapis.eu/crm/v2/Service_Report_Parts"
+        End Get
+
+    End Property
+
+    Public Overrides ReadOnly Property sqlView As String
+        Get
+            Return "zoho_Service_Report_Parts"
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property rowCount As Integer
+        Get
+            Return 100
+        End Get
+    End Property
+
+    Public Overrides Function zoho_item(ByRef r As SqlDataReader) As zoho_Data
+        Return New zoho_Account(r)
+
+    End Function
+
+End Class
+
+Public Class Service_Report_Parts : Inherits zoho_Data
+Public Property Name As String
+Public Property Part_Description As String
+Public Property Planned_returned_Quantity As integer?
+Public Property Actual_returned_Quantity As integer?
+Public Property Planned_Quantity As integer?
+Public Property Actual_Quantity As integer?
+Public Property Planned_Defect_Description As String
+Public Property Planned_Defect_Code As String
+Public Property Defect_Code As String
+Public Property Description_of_Defect As String
+Public Property Call_Type As String
+Public Property Part_Number As zoho_lookup
+Public Property Owner As zoho_lookup
+Public Property Service_Call As zoho_lookup
+	Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+    End Sub
+
+    Public Sub New(r As SqlDataReader)
+
+        Part_Number = New zoho_LookUp
+        Service_Call = New zoho_LookUp
+	Owner = New zoho_LookUp
+
+        PopulateData(r)
+
+    End Sub
+End Class
+

@@ -17,35 +17,47 @@ Module Main
             'Dim c As New zoho_Users()
             'c.Send()
 
-            Using acc As New zoho_Module_Account
-                With acc
-                    '.Columns("CUST", "id", "AgentCode_Account_Manager", "AgentName_Account_Manager")
-                    '.Process(zoho_Module.eMethod.CUSTOM, "workflow")
+            Do
+                Try
+                    Using acc As New zoho_Module_Account
+                        With acc
+                            '.Columns("CUST", "id", "AgentCode_Account_Manager", "AgentName_Account_Manager")
+                            '.Process(zoho_Module.eMethod.CUSTOM, "workflow")
 
-                    .Process(zoho_Module.eMethod.UPDATE, "workflow")
-                    .Process(zoho_Module.eMethod.INSERT, "workflow")
+                            .Process(zoho_Module.eMethod.UPDATE, "workflow")
+                            .Process(zoho_Module.eMethod.INSERT, "workflow")
 
-                End With
+                        End With
 
-            End Using
+                    End Using
 
-            Using contact As New zoho_Module_Contacts
-                With contact
-                    .Process(zoho_Module.eMethod.UPDATE, "workflow")
-                    .Process(zoho_Module.eMethod.INSERT, "workflow")
+                    Using contact As New zoho_Module_Contacts
+                        With contact
+                            .Process(zoho_Module.eMethod.UPDATE, "workflow")
+                            .Process(zoho_Module.eMethod.INSERT, "workflow")
 
-                End With
+                        End With
 
-            End Using
+                    End Using
 
-            Using site As New zoho_Module_Sites
-                With site
-                    .Process(zoho_Module.eMethod.UPDATE, "workflow")
-                    .Process(zoho_Module.eMethod.INSERT, "workflow")
+                    Using site As New zoho_Module_Sites
+                        With site
+                            .Process(zoho_Module.eMethod.UPDATE, "workflow")
+                            .Process(zoho_Module.eMethod.INSERT, "workflow")
 
-                End With
+                        End With
 
-            End Using
+                    End Using
+
+                Catch ex As Exception
+                    Threading.Thread.Sleep(5000)
+
+                Finally
+                    Threading.Thread.Sleep(2000)
+
+                End Try
+
+            Loop
 
         Catch ex As Exception
             Console.WriteLine(ex.Message)
