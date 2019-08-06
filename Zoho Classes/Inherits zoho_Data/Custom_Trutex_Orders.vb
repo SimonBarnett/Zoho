@@ -31,40 +31,42 @@ Public Class zoho_Module_Custom_Trutex_Orders : Inherits zoho_Module
 End Class
 
 Public Class Custom_Trutex_Orders : Inherits zoho_Data
-Public Property Customer_Number As String
-Public Property Priority_Date_of_Sales_Order As String
-Public Property Name As String
-Public Property Status As String
-Public Property Type_of_Sale_Description As String
-Public Property Type_of_Sale_Code As String
-Public Property To_Consignment_Warehouse_Name As String
-Public Property To_Consignment_Warehouse_Code As String
-Public Property Price_Quote_Number As String
-Public Property Customer_PO As String
-Public Property Customer_PO_Details As String
-Public Property Price_List As String
-Public Property Price_after_Discount1 As double?
-Public Property VAT1 As double?
-Public Property Final_Price1 As double?
-Public Property Currency_Code As String
-Public Property Payment_Terms_Description As String
-Public Property Payment_Terms_Code As String
-Public Property Order_Received_Date As String
-Public Property Site_Contact As String
-Public Property Site_Phone_Number As String
-Public Property Street_Address As String
-Public Property Address_2 As String
-Public Property Address_3 As String
-Public Property City As String
-Public Property County As String
-Public Property Post_Code As String
-Public Property Country As String
-Public Property Details As String
-Public Property Customer As zoho_lookup
-Public Property Price_List_Looked_Up As zoho_lookup
-Public Property Site_Code As zoho_lookup
-Public Property Owner As zoho_lookup
-	Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+    Public Property id As String
+    Public Property Customer_Number As String
+    Public Property Priority_Date_of_Sales_Order As String
+    Public Property Name As String
+    Public Property Status As String
+    Public Property Type_of_Sale_Description As String
+    Public Property Type_of_Sale_Code As String
+    Public Property To_Consignment_Warehouse_Name As String
+    Public Property To_Consignment_Warehouse_Code As String
+    Public Property Price_Quote_Number As String
+    Public Property Customer_PO As String
+    Public Property Customer_PO_Details As String
+    Public Property Price_List As String
+    Public Property Price_after_Discount1 As Double?
+    Public Property VAT1 As Double?
+    Public Property Final_Price1 As Double?
+    Public Property Currency_Code As String
+    Public Property Payment_Terms_Description As String
+    Public Property Payment_Terms_Code As String
+    Public Property Order_Received_Date As String
+    Public Property Site_Contact As String
+    Public Property Site_Phone_Number As String
+    Public Property Street_Address As String
+    Public Property Address_2 As String
+    Public Property Address_3 As String
+    Public Property City As String
+    Public Property County As String
+    Public Property Post_Code As String
+    Public Property Country As String
+    Public Property Details As String
+    Public Property Customer As zoho_LookUp
+    Public Property Price_List_Looked_Up As zoho_LookUp
+    Public Property Site_Code As zoho_LookUp
+    Public Property Owner As zoho_LookUp
+    Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
 
     End Sub
 

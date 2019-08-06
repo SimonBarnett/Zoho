@@ -31,7 +31,8 @@ Public Class zoho_Module_Part_Prices : Inherits zoho_Module
 End Class
 
 Public Class Part_Prices : Inherits zoho_Data
-Public Property Name As String
+    Public Property id As String
+    Public Property Name As String
 Public Property Quantity As String
 Public Property Price As String
 Public Property Price_including_VAT As String

@@ -31,24 +31,27 @@ Public Class zoho_Module_Custom_Trutex_Order_Lines : Inherits zoho_Module
 End Class
 
 Public Class Custom_Trutex_Order_Lines : Inherits zoho_Data
-Public Property Name As String
-Public Property Part_Description As String
-Public Property Part_Status As String
-Public Property Quantity As integer?
-Public Property Reserved_Quantity As String
-Public Property Price As String
-Public Property Unit_Price_including_VAT As double?
-Public Property Price_Source As String
-Public Property Customer_Requested_Date As String
-Public Property Ship_Due_Date As String
-Public Property Balance_Quantity_Outstanding As integer?
-Public Property Closed As Boolean?
-Public Property Extended_Total_Price As double?
-Public Property Line_Type As String
-Public Property Part_Code As zoho_lookup
-Public Property Custom_Trutex_Order As zoho_lookup
-Public Property Owner As zoho_lookup
-	Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+    Public Property id As String
+    Public Property Name As String
+    Public Property Part_Description As String
+    Public Property Part_Status As String
+    Public Property Quantity As Integer?
+    Public Property Reserved_Quantity As String
+    Public Property Price As String
+    Public Property Unit_Price_including_VAT As Double?
+    Public Property Price_Source As String
+    Public Property Customer_Requested_Date As String
+    Public Property Ship_Due_Date As String
+    Public Property Balance_Quantity_Outstanding As Integer?
+    Public Property Closed As Boolean?
+    Public Property Extended_Total_Price As Double?
+    Public Property Line_Type As String
+    Public Property Part_Code As zoho_LookUp
+    Public Property Custom_Trutex_Order As zoho_LookUp
+    Public Property Owner As zoho_LookUp
+
+    Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
 
     End Sub
 

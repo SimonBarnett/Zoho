@@ -49,6 +49,32 @@ Module Main
 
                     End Using
 
+                    Using links As New zoho_Module_CustomerLinks
+                        With links
+                            .Process(zoho_Module.eMethod.UPDATE, "workflow")
+                            .Process(zoho_Module.eMethod.INSERT, "workflow")
+
+                        End With
+
+                    End Using
+
+                    Using pl As New zoho_Module_Customer_Price_Lists
+                        With pl
+                            .Process(zoho_Module.eMethod.UPDATE, "workflow")
+                            .Process(zoho_Module.eMethod.INSERT, "workflow")
+
+                        End With
+                    End Using
+
+                    'Using parts As New zoho_Module_Part_Catalogue
+                    '    With parts
+                    '        '.Process(zoho_Module.eMethod.UPDATE, "workflow")
+                    '        .Process(zoho_Module.eMethod.INSERT, "workflow")
+
+                    '    End With
+
+                    'End Using
+
                 Catch ex As Exception
                     Threading.Thread.Sleep(5000)
 

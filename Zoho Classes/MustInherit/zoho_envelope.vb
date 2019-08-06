@@ -17,6 +17,7 @@ Public Class zoho_envelope : Inherits base_schema
         _zModule = zModule
         For Each str As String In triggers
             trigger.Add(str)
+
         Next
 
         Dim cmdstr As New StringBuilder
@@ -146,6 +147,7 @@ Public Class zoho_envelope : Inherits base_schema
             If args.Keys.Contains("v") Then
                 Console.WriteLine(data(i).toSerial)
                 Console.WriteLine(resp.data(i).toSerial)
+
             End If
 
             data(i).HandleResponse(cn, resp.data(i))

@@ -31,8 +31,9 @@ Public Class zoho_Module_Customers_X_Price_Lists : Inherits zoho_Module
 End Class
 
 Public Class Customers_X_Price_Lists : Inherits zoho_Data
-Public Property Price_List_Priority As String
-Public Property Customer_Price_Lists As zoho_lookup
+    Public Property id As String
+    Public Property Price_List_Priority As String
+    Public Property Customer_Price_Lists As zoho_lookup
 Public Property Customers As zoho_lookup
 Public Property Owner As zoho_lookup
 	Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)

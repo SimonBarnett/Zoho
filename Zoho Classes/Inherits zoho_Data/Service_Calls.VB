@@ -31,7 +31,8 @@ Public Class zoho_Module_Service_Calls : Inherits zoho_Module
 End Class
 
 Public Class Service_Calls : Inherits zoho_Data
-Public Property Name As String
+    Public Property id As String
+    Public Property Name As String
 Public Property Customer_Number As String
 Public Property Date_Service_Call_Opened As String
 Public Property RMA_Number As String

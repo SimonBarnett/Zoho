@@ -33,6 +33,7 @@ Public Class zoho_Site : Inherits zoho_Data
     <JsonIgnore>
     Public Property DESTCODE As Integer
 
+    Public Property id As String
     Public Property Name As String
     Public Property Site_Description As String
     Public Property Site_Email As String

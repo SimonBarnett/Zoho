@@ -33,9 +33,11 @@ Public Class zoho_Contact : Inherits zoho_Data
     <JsonIgnore>
     Public Property PHONEid As Integer
 
+    Public Property id As String
     Public Property Contact_Status1 As String
     Public Property Description As String
     Public Property Title As String
+    Public Property Salutation As String
     Public Property First_Name As String
     Public Property Last_Name As String
     Public Property Mobile As String

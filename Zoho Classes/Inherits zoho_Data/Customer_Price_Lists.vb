@@ -31,15 +31,63 @@ Public Class zoho_Module_Customer_Price_Lists : Inherits zoho_Module
 End Class
 
 Public Class Customer_Price_Lists : Inherits zoho_Data
-Public Property Name As String
-Public Property List_Description As String
-Public Property Currency_Code As String
-Public Property Valid_List_Date As String
-Public Property In_Use As Boolean?
-Public Property Owner As zoho_lookup
-	Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+    <JsonIgnore>
+    Public Property PLIST As Integer
+
+    Public Property id As String
+    Public Property Name As String
+    Public Property List_Description As String
+    Public Property Currency_Code As String
+    Public Property Valid_List_Date As String
+    Public Property In_Use As Boolean?
+
+    Public Property Owner As zoho_LookUp
+
+    Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+        With resp
+            Select Case .code.ToUpper
+                Case "SUCCESS"
+                    Dim cmd As New SqlCommand(
+                        String.Format(
+                            "update PRICELIST set " &
+                            "ZOHO_ID = '{1}', " &
+                            "ZOHO_LASTSEND = {2}, " &
+                            "ZOHO_SENT = 'Y' " &
+                            "where PLIST = {0}",
+                            PLIST,
+                            .details.id,
+                            DateDiff(
+                                DateInterval.Minute,
+                                #01/01/1988#,
+                                .details.Modified_Time
+                            ).ToString
+                        ),
+                        cn
+                    )
+                    cmd.ExecuteNonQuery()
+
+                Case Else
+                    Dim cmd As New SqlCommand(
+                        String.Format(
+                            "update PRICELIST set " &
+                            "ZOHO_FAILMESS = '{1}', " &
+                            "ZOHO_FAIL = 'Y' " &
+                            "where PLIST = {0}",
+                            PLIST,
+                            .message
+                        ),
+                        cn
+                    )
+                    cmd.ExecuteNonQuery()
+
+            End Select
+
+        End With
 
     End Sub
+
 
     Public Sub New(r As SqlDataReader)
 

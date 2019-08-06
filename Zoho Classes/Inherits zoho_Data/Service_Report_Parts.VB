@@ -31,8 +31,9 @@ Public Class zoho_Module_Service_Report_Parts : Inherits zoho_Module
 End Class
 
 Public Class Service_Report_Parts : Inherits zoho_Data
-Public Property Name As String
-Public Property Part_Description As String
+    Public Property id As String
+    Public Property Name As String
+    Public Property Part_Description As String
 Public Property Planned_returned_Quantity As integer?
 Public Property Actual_returned_Quantity As integer?
 Public Property Planned_Quantity As integer?

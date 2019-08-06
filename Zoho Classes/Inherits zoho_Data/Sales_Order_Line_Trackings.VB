@@ -31,7 +31,8 @@ Public Class zoho_Module_Sales_Order_Line_Trackings : Inherits zoho_Module
 End Class
 
 Public Class Sales_Order_Line_Trackings : Inherits zoho_Data
-Public Property Name As String
+    Public Property id As String
+    Public Property Name As String
     Public Property [Date] As String
     Public Property Quantity As integer?
 Public Property Inventory_Transaction_Type As String
