@@ -83,21 +83,29 @@ Module Main
                         End With
                     End Using
 
-                    'Using pprice As New zoho_Module_Part_Prices
-                    '    With pprice
-                    '        .Process(zoho_Module.eMethod.UPDATE, "workflow")
-                    '        .Process(zoho_Module.eMethod.INSERT, "workflow")
+                    Using pprice As New zoho_Module_Part_Prices
+                        With pprice
+                            .Process(zoho_Module.eMethod.UPDATE, "workflow")
+                            .Process(zoho_Module.eMethod.INSERT, "workflow")
 
-                    '    End With
-                    'End Using
+                        End With
+                    End Using
 
-                    'Using ord As New zoho_Module_Custom_Trutex_Orders
-                    '    With ord
-                    '        .Process(zoho_Module.eMethod.UPDATE, "workflow")
-                    '        .Process(zoho_Module.eMethod.INSERT, "workflow")
+                    Using ord As New zoho_Module_Custom_Trutex_Orders
+                        With ord
+                            .Process(zoho_Module.eMethod.UPDATE, "workflow")
+                            .Process(zoho_Module.eMethod.INSERT, "workflow")
 
-                    '    End With
-                    'End Using
+                        End With
+                    End Using
+
+                    Using ordi As New zoho_Module_Custom_Trutex_Order_Lines
+                        With ordi
+                            .Process(zoho_Module.eMethod.UPDATE, "workflow")
+                            .Process(zoho_Module.eMethod.INSERT, "workflow")
+
+                        End With
+                    End Using
 
                 Catch ex As Exception
                     Threading.Thread.Sleep(5000)
