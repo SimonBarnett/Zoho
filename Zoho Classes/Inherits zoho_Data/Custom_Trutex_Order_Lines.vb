@@ -24,7 +24,7 @@ Public Class zoho_Module_Custom_Trutex_Order_Lines : Inherits zoho_Module
     End Property
 
     Public Overrides Function zoho_item(ByRef r As SqlDataReader) As zoho_Data
-        Return New zoho_Account(r)
+        Return New Custom_Trutex_Order_Lines(r)
 
     End Function
 
@@ -52,6 +52,8 @@ Public Class Custom_Trutex_Order_Lines : Inherits zoho_Data
     Public Property Line_Type As String
     Public Property Part_Code As zoho_LookUp
     Public Property Custom_Trutex_Order As zoho_LookUp
+    Public Property Customer As zoho_LookUp
+
 
     'Public Property Owner As zoho_LookUp
 
@@ -104,6 +106,7 @@ Public Class Custom_Trutex_Order_Lines : Inherits zoho_Data
 
         Part_Code = New zoho_LookUp
         Custom_Trutex_Order = New zoho_LookUp
+        Customer = New zoho_LookUp
         'Owner = New zoho_LookUp
 
         PopulateData(r)

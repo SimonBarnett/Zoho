@@ -58,15 +58,6 @@ Module Main
 
                     End Using
 
-                    Using parts As New zoho_Module_Part_Catalogue
-                        With parts
-                            .Process(zoho_Module.eMethod.UPDATE, "workflow")
-                            .Process(zoho_Module.eMethod.INSERT, "workflow")
-
-                        End With
-
-                    End Using
-
                     Using pl As New zoho_Module_Customer_Price_Lists
                         With pl
                             .Process(zoho_Module.eMethod.UPDATE, "workflow")
@@ -77,14 +68,6 @@ Module Main
 
                     Using custpl As New zoho_Module_Customers_X_Price_Lists
                         With custpl
-                            .Process(zoho_Module.eMethod.UPDATE, "workflow")
-                            .Process(zoho_Module.eMethod.INSERT, "workflow")
-
-                        End With
-                    End Using
-
-                    Using pprice As New zoho_Module_Part_Prices
-                        With pprice
                             .Process(zoho_Module.eMethod.UPDATE, "workflow")
                             .Process(zoho_Module.eMethod.INSERT, "workflow")
 
@@ -107,7 +90,25 @@ Module Main
                         End With
                     End Using
 
+                    Using parts As New zoho_Module_Part_Catalogue
+                        With parts
+                            .Process(zoho_Module.eMethod.UPDATE, "workflow")
+                            .Process(zoho_Module.eMethod.INSERT, "workflow")
+
+                        End With
+
+                    End Using
+
+                    Using pprice As New zoho_Module_Part_Prices
+                        With pprice
+                            .Process(zoho_Module.eMethod.UPDATE, "workflow")
+                            .Process(zoho_Module.eMethod.INSERT, "workflow")
+
+                        End With
+                    End Using
+
                 Catch ex As Exception
+                    Console.WriteLine(ex.Message)
                     Threading.Thread.Sleep(5000)
 
                 Finally

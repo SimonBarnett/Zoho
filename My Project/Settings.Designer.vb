@@ -109,9 +109,9 @@ Namespace My
     Friend Module MySettingsProperty
         
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.ConsoleApp3.My.MySettings
+        Friend ReadOnly Property Settings() As Global.truzoho.My.MySettings
             Get
-                Return Global.ConsoleApp3.My.MySettings.Default
+                Return Global.truzoho.My.MySettings.Default
             End Get
         End Property
     End Module
