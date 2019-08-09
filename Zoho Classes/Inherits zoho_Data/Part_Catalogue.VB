@@ -44,19 +44,17 @@ Public Class Part_Catalogue : Inherits zoho_Data
     Public Property Range As String
     Public Property VAT_Group_Code As String
     Public Property Base_Product As Boolean?
-    Public Property Is_this_Separate As Boolean?
     Public Property Available_for_Sale As String
     Public Property Valid_To As String
     Public Property Valid_From As String
     Public Property Standard_Cost As String
-    Public Property Cost As String
     Public Property Currency_Code As String
+    Public Property School_Number_Text As String
+
     Public Property Base_Product_Code As zoho_LookUp
-    Public Property School_Number As zoho_LookUp
-    Public Property Owner As zoho_LookUp
+    'Public Property Owner As zoho_LookUp
 
     Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
-
 
         With resp
             Select Case .code.ToUpper
@@ -103,8 +101,8 @@ Public Class Part_Catalogue : Inherits zoho_Data
     Public Sub New(r As SqlDataReader)
 
         Base_Product_Code = New zoho_LookUp
-        School_Number = New zoho_LookUp
-        Owner = New zoho_LookUp
+        'School_Number = New zoho_LookUp
+        'Owner = New zoho_LookUp
 
         PopulateData(r)
 

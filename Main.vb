@@ -58,6 +58,15 @@ Module Main
 
                     End Using
 
+                    Using parts As New zoho_Module_Part_Catalogue
+                        With parts
+                            .Process(zoho_Module.eMethod.UPDATE, "workflow")
+                            .Process(zoho_Module.eMethod.INSERT, "workflow")
+
+                        End With
+
+                    End Using
+
                     Using pl As New zoho_Module_Customer_Price_Lists
                         With pl
                             .Process(zoho_Module.eMethod.UPDATE, "workflow")
@@ -66,13 +75,28 @@ Module Main
                         End With
                     End Using
 
-                    'Using parts As New zoho_Module_Part_Catalogue
-                    '    With parts
-                    '        '.Process(zoho_Module.eMethod.UPDATE, "workflow")
+                    Using custpl As New zoho_Module_Customers_X_Price_Lists
+                        With custpl
+                            .Process(zoho_Module.eMethod.UPDATE, "workflow")
+                            .Process(zoho_Module.eMethod.INSERT, "workflow")
+
+                        End With
+                    End Using
+
+                    'Using pprice As New zoho_Module_Part_Prices
+                    '    With pprice
+                    '        .Process(zoho_Module.eMethod.UPDATE, "workflow")
                     '        .Process(zoho_Module.eMethod.INSERT, "workflow")
 
                     '    End With
+                    'End Using
 
+                    'Using ord As New zoho_Module_Custom_Trutex_Orders
+                    '    With ord
+                    '        .Process(zoho_Module.eMethod.UPDATE, "workflow")
+                    '        .Process(zoho_Module.eMethod.INSERT, "workflow")
+
+                    '    End With
                     'End Using
 
                 Catch ex As Exception

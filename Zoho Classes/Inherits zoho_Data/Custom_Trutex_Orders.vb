@@ -32,6 +32,9 @@ End Class
 
 Public Class Custom_Trutex_Orders : Inherits zoho_Data
 
+    <JsonIgnore>
+    Public Property ORD As Integer
+
     Public Property id As String
     Public Property Customer_Number As String
     Public Property Priority_Date_of_Sales_Order As String
@@ -65,8 +68,49 @@ Public Class Custom_Trutex_Orders : Inherits zoho_Data
     Public Property Customer As zoho_LookUp
     Public Property Price_List_Looked_Up As zoho_LookUp
     Public Property Site_Code As zoho_LookUp
-    Public Property Owner As zoho_LookUp
+    'Public Property Owner As zoho_LookUp
+
     Public Overrides Sub HandleResponse(ByRef cn As SqlConnection, ByRef resp As zoho_Response)
+
+        With resp
+            Select Case .code.ToUpper
+                Case "SUCCESS"
+                    Dim cmd As New SqlCommand(
+                        String.Format(
+                            "update ORDERS set " &
+                            "ZOHO_ID = '{1}', " &
+                            "ZOHO_LASTSEND = {2}, " &
+                            "ZOHO_SENT = 'Y' " &
+                            "where ORD = {0}",
+                            ORD,
+                            .details.id,
+                            DateDiff(
+                                DateInterval.Minute,
+                                #01/01/1988#,
+                                .details.Modified_Time
+                            ).ToString
+                        ),
+                        cn
+                    )
+                    cmd.ExecuteNonQuery()
+
+                Case Else
+                    Dim cmd As New SqlCommand(
+                        String.Format(
+                            "update ORDERS set " &
+                            "ZOHO_FAILMESS = '{1}', " &
+                            "ZOHO_FAIL = 'Y' " &
+                            "where ORD = {0}",
+                            ORD,
+                            .message
+                        ),
+                        cn
+                    )
+                    cmd.ExecuteNonQuery()
+
+            End Select
+
+        End With
 
     End Sub
 
@@ -75,9 +119,10 @@ Public Class Custom_Trutex_Orders : Inherits zoho_Data
         Customer = New zoho_LookUp
         Price_List_Looked_Up = New zoho_LookUp
         Site_Code = New zoho_LookUp
-	Owner = New zoho_LookUp
+        'Owner = New zoho_LookUp
 
         PopulateData(r)
 
     End Sub
+
 End Class
